@@ -1,4 +1,5 @@
 const express = require("express");
+const  path  = require("path");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
@@ -6,11 +7,10 @@ const authRouter = require("./routes/auth.route");
 const messageRouter = require("./routes/message.route");
 const { handleConnectDB } = require("./lib/db");
 const { app, server } = require("./lib/socket");
-const { path } = require("path");
 
 dotenv.config();
 const PORT = process.env.PORT;
-const __dirname = path.resolve();
+const dirname = path.resolve();
 
 app.use(cookieParser());
 app.use(
@@ -27,10 +27,10 @@ app.use("/api/auth", authRouter);
 app.use("/api/messages", messageRouter);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../Frontend/dist")));
+  app.use(express.static(path.join(dirname, "../Frontend/dist")));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../Frontend", "dist", "index.html"));
+    res.sendFile(path.join(dirname, "../Frontend", "dist", "index.html"));
   });
 }
 
