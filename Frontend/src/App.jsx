@@ -1,4 +1,4 @@
-// Commit for git activity
+// Just for git activity
 import React, { useEffect } from "react";
 import Navbar from "./component/Navbar";
 import { Navigate, Route, Routes } from "react-router-dom";
